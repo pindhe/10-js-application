@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="images (10).jpeg" width="850" alt="10 JavaScript Applications Preview" style="border-radius:18px; box-shadow:0 10px 35px rgba(0,0,0,0.35);" />
+<img src="images (10).jpeg" width="850" alt="10 JavaScript Applications Preview" style="border-radius:18px;" />
 
 <br/>
 <br/>
