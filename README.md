@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="images (10).jpeg" width="850" alt="10 JavaScript Applications Preview" style="border-radius:18px;" />
+<img src="images (10).jpeg" width="120" alt="Logo Preview" style="border-radius:50%;" />
 
 <br/>
 <br/>
