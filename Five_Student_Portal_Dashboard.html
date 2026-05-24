@@ -8,6 +8,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
     ::-webkit-scrollbar{
       width:8px;
     }
@@ -15,16 +19,273 @@
       background:#3b82f6;
       border-radius:20px;
     }
+
+    /* Dark Mode */
+    body.dark-mode {
+      @apply bg-slate-950;
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .bg-slate-900 {
+      @apply bg-slate-800;
+    }
+
+    body.dark-mode .bg-white {
+      @apply bg-slate-800;
+    }
+
+    body.dark-mode .text-slate-800 {
+      @apply text-slate-100;
+    }
+
+    body.dark-mode .text-slate-500 {
+      @apply text-slate-400;
+    }
+
+    body.dark-mode .border {
+      @apply border-slate-700;
+    }
+
+    body.dark-mode .bg-slate-100 {
+      @apply bg-slate-700;
+    }
+
+    /* Animations */
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes rotate3d {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    @keyframes flip {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+
+    .animate-slide-down {
+      animation: slideInDown 0.6s ease-out;
+    }
+
+    .animate-slide-up {
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .animate-slide-left {
+      animation: slideInLeft 0.6s ease-out;
+    }
+
+    .animate-slide-right {
+      animation: slideInRight 0.6s ease-out;
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .animate-bounce-slow {
+      animation: bounce 3s ease-in-out infinite;
+    }
+
+    .animate-pulse-slow {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-rotate-3d {
+      animation: rotate3d 4s linear infinite;
+    }
+
+    .animate-flip {
+      animation: flip 2s ease-in-out infinite;
+    }
+
+    /* 3D Effects */
+    .perspective {
+      perspective: 1000px;
+    }
+
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .card-3d:hover {
+      transform: rotateX(5deg) rotateY(5deg) scale(1.02);
+    }
+
+    .card-glow {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-glow::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .hover-lift:hover {
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .notification-badge {
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .menu-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: left 0.5s ease;
+    }
+
+    .menu-btn:hover::before {
+      left: 100%;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      backdrop-filter: blur(10px);
+    }
+
+    /* Stagger animations */
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
   </style>
 </head>
 
-<body class="bg-slate-100 font-sans">
+<body class="bg-slate-100 font-sans animate-fade-in">
 
   <!-- MAIN CONTAINER -->
   <div class="flex h-screen overflow-hidden">
 
     <!-- SIDEBAR -->
-    <aside class="w-72 bg-slate-900 text-white flex flex-col">
+    <aside class="w-72 bg-slate-900 text-white flex flex-col animate-slide-left">
 
       <!-- LOGO -->
       <div class="p-6 border-b border-slate-800">
@@ -37,57 +298,58 @@
       </div>
 
       <!-- USER -->
-      <div class="p-6 border-b border-slate-800 flex items-center gap-4">
+      <div class="p-6 border-b border-slate-800 flex items-center gap-4 card-3d">
         <img
           src="https://i.pravatar.cc/100"
-          class="w-14 h-14 rounded-full border-2 border-blue-500"
+          class="w-14 h-14 rounded-full border-2 border-blue-500 animate-pulse-slow"
         />
 
         <div>
-          <h2 class="font-semibold">Ahmed Hassan</h2>
-          <p class="text-sm text-slate-400">
-            Computer Science
-          </p>
+          <h2 class="font-semibold" id="userName"></h2>
+          <p class="text-sm text-slate-400" id="userMajor"></p>
         </div>
       </div>
 
       <!-- MENU -->
       <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
 
-        <button onclick="showSection('dashboard')" class="menu-btn w-full text-left px-4 py-3 rounded-xl bg-blue-600">
+        <button onclick="showSection('dashboard')" class="menu-btn w-full text-left px-4 py-3 rounded-xl bg-blue-600 animate-slide-down stagger-1">
           🏠 Dashboard
         </button>
 
-        <button onclick="showSection('courses')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800">
+        <button onclick="showSection('courses')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800 animate-slide-down stagger-2">
           📚 Courses
         </button>
 
-        <button onclick="showSection('grades')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800">
+        <button onclick="showSection('grades')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800 animate-slide-down stagger-3">
           🎓 Grades
         </button>
 
-        <button onclick="showSection('assignments')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800">
+        <button onclick="showSection('assignments')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800 animate-slide-down stagger-4">
           📝 Assignments
         </button>
 
-        <button onclick="showSection('schedule')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800">
+        <button onclick="showSection('schedule')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800 animate-slide-down" style="animation-delay: 0.5s;">
           📅 Schedule
         </button>
 
-        <button onclick="showSection('announcements')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800">
+        <button onclick="showSection('announcements')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800 animate-slide-down" style="animation-delay: 0.6s;">
           📢 Announcements
         </button>
 
-        <button onclick="showSection('profile')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800">
+        <button onclick="showSection('profile')" class="menu-btn w-full text-left px-4 py-3 rounded-xl hover:bg-slate-800 animate-slide-down" style="animation-delay: 0.7s;">
           👤 My Profile
         </button>
 
       </nav>
 
       <!-- FOOTER -->
-      <div class="p-4 border-t border-slate-800">
-        <button class="w-full bg-red-500 hover:bg-red-600 py-3 rounded-xl font-semibold">
+      <div class="p-4 border-t border-slate-800 space-y-2">
+        <button class="w-full bg-red-500 hover:bg-red-600 py-3 rounded-xl font-semibold hover-lift">
           Logout
+        </button>
+        <button onclick="toggleDarkMode()" class="w-full bg-slate-700 hover:bg-slate-600 py-3 rounded-xl font-semibold hover-lift">
+          🌙 Dark Mode
         </button>
       </div>
 
@@ -97,7 +359,7 @@
     <main class="flex-1 overflow-y-auto">
 
       <!-- TOPBAR -->
-      <header class="bg-white shadow-sm px-8 py-5 flex items-center justify-between">
+      <header class="bg-white shadow-sm px-8 py-5 flex items-center justify-between animate-slide-down">
 
         <div>
           <h2 class="text-2xl font-bold text-slate-800">
@@ -111,16 +373,16 @@
 
         <div class="flex items-center gap-4">
 
-          <button class="relative">
+          <button class="relative animate-float">
             🔔
-            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full notification-badge" id="notifCount">
               3
             </span>
           </button>
 
           <img
             src="https://i.pravatar.cc/100"
-            class="w-12 h-12 rounded-full"
+            class="w-12 h-12 rounded-full animate-bounce-slow"
           />
 
         </div>
@@ -134,34 +396,26 @@
         <section id="dashboard" class="section">
 
           <!-- CARDS -->
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 perspective">
 
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
-              <h3 class="text-slate-500">Current GPA</h3>
-              <h1 class="text-4xl font-bold mt-3 text-blue-600">
-                3.87
-              </h1>
+            <div class="bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-up stagger-1 stat-card" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white;">
+              <h3>Current GPA</h3>
+              <h1 class="text-4xl font-bold mt-3 animate-bounce-slow" id="gpa"></h1>
             </div>
 
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
-              <h3 class="text-slate-500">Enrolled Courses</h3>
-              <h1 class="text-4xl font-bold mt-3 text-green-600">
-                6
-              </h1>
+            <div class="bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-up stagger-2 stat-card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+              <h3>Enrolled Courses</h3>
+              <h1 class="text-4xl font-bold mt-3 animate-bounce-slow" id="courses-count"></h1>
             </div>
 
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
-              <h3 class="text-slate-500">Assignments Due</h3>
-              <h1 class="text-4xl font-bold mt-3 text-orange-500">
-                4
-              </h1>
+            <div class="bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-up stagger-3 stat-card" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white;">
+              <h3>Assignments Due</h3>
+              <h1 class="text-4xl font-bold mt-3 animate-bounce-slow" id="assignments-due"></h1>
             </div>
 
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
-              <h3 class="text-slate-500">Notifications</h3>
-              <h1 class="text-4xl font-bold mt-3 text-red-500">
-                12
-              </h1>
+            <div class="bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-up stagger-4 stat-card" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white;">
+              <h3>Notifications</h3>
+              <h1 class="text-4xl font-bold mt-3 animate-bounce-slow" id="notifications"></h1>
             </div>
 
           </div>
@@ -170,112 +424,30 @@
           <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
 
             <!-- ASSIGNMENTS -->
-            <div class="xl:col-span-2 bg-white rounded-3xl p-6 shadow-sm">
+            <div class="xl:col-span-2 bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-right">
 
               <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-bold">
                   Upcoming Assignments
                 </h2>
 
-                <button class="text-blue-600 font-semibold">
+                <button class="text-blue-600 font-semibold hover:text-blue-700">
                   View All
                 </button>
               </div>
 
-              <div class="space-y-4">
-
-                <div class="border rounded-2xl p-4 flex justify-between items-center">
-                  <div>
-                    <h3 class="font-semibold">
-                      Database Project
-                    </h3>
-
-                    <p class="text-sm text-slate-500">
-                      Due: May 30, 2026
-                    </p>
-                  </div>
-
-                  <span class="bg-red-100 text-red-600 px-4 py-2 rounded-xl text-sm">
-                    Urgent
-                  </span>
-                </div>
-
-                <div class="border rounded-2xl p-4 flex justify-between items-center">
-                  <div>
-                    <h3 class="font-semibold">
-                      UI/UX Research
-                    </h3>
-
-                    <p class="text-sm text-slate-500">
-                      Due: June 02, 2026
-                    </p>
-                  </div>
-
-                  <span class="bg-orange-100 text-orange-600 px-4 py-2 rounded-xl text-sm">
-                    Pending
-                  </span>
-                </div>
-
-                <div class="border rounded-2xl p-4 flex justify-between items-center">
-                  <div>
-                    <h3 class="font-semibold">
-                      Networking Lab
-                    </h3>
-
-                    <p class="text-sm text-slate-500">
-                      Due: June 05, 2026
-                    </p>
-                  </div>
-
-                  <span class="bg-green-100 text-green-600 px-4 py-2 rounded-xl text-sm">
-                    Submitted
-                  </span>
-                </div>
-
-              </div>
+              <div class="space-y-4" id="assignments-list"></div>
 
             </div>
 
             <!-- TODAY SCHEDULE -->
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
+            <div class="bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-left">
 
               <h2 class="text-xl font-bold mb-6">
                 Today's Schedule
               </h2>
 
-              <div class="space-y-5">
-
-                <div class="border-l-4 border-blue-500 pl-4">
-                  <h3 class="font-semibold">
-                    Web Development
-                  </h3>
-
-                  <p class="text-sm text-slate-500">
-                    08:00 AM - 10:00 AM
-                  </p>
-                </div>
-
-                <div class="border-l-4 border-green-500 pl-4">
-                  <h3 class="font-semibold">
-                    Data Structures
-                  </h3>
-
-                  <p class="text-sm text-slate-500">
-                    11:00 AM - 01:00 PM
-                  </p>
-                </div>
-
-                <div class="border-l-4 border-orange-500 pl-4">
-                  <h3 class="font-semibold">
-                    Software Engineering
-                  </h3>
-
-                  <p class="text-sm text-slate-500">
-                    02:00 PM - 04:00 PM
-                  </p>
-                </div>
-
-              </div>
+              <div class="space-y-5" id="schedule-list"></div>
 
             </div>
 
@@ -284,7 +456,7 @@
         </section>
 
         <!-- COURSES -->
-        <section id="courses" class="section hidden">
+        <section id="courses" class="section hidden animate-fade-in">
 
           <div class="flex items-center justify-between mb-8">
             <h1 class="text-3xl font-bold">
@@ -298,58 +470,14 @@
             />
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-
-            <div class="bg-white p-6 rounded-3xl shadow-sm">
-              <h2 class="font-bold text-xl">
-                CS101 - Programming
-              </h2>
-
-              <p class="text-slate-500 mt-2">
-                Introduction to programming fundamentals.
-              </p>
-
-              <button class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-xl">
-                Open Course
-              </button>
-            </div>
-
-            <div class="bg-white p-6 rounded-3xl shadow-sm">
-              <h2 class="font-bold text-xl">
-                DB202 - Database Systems
-              </h2>
-
-              <p class="text-slate-500 mt-2">
-                SQL, PostgreSQL and database design.
-              </p>
-
-              <button class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-xl">
-                Open Course
-              </button>
-            </div>
-
-            <div class="bg-white p-6 rounded-3xl shadow-sm">
-              <h2 class="font-bold text-xl">
-                UX305 - UI/UX Design
-              </h2>
-
-              <p class="text-slate-500 mt-2">
-                Modern design systems and user research.
-              </p>
-
-              <button class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-xl">
-                Open Course
-              </button>
-            </div>
-
-          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 perspective" id="courses-grid"></div>
 
         </section>
 
         <!-- GRADES -->
-        <section id="grades" class="section hidden">
+        <section id="grades" class="section hidden animate-fade-in">
 
-          <div class="bg-white rounded-3xl p-8 shadow-sm">
+          <div class="bg-white rounded-3xl p-8 shadow-sm card-3d hover-lift">
 
             <h1 class="text-3xl font-bold mb-8">
               Grades & GPA
@@ -367,25 +495,7 @@
                   </tr>
                 </thead>
 
-                <tbody>
-
-                  <tr class="border-b">
-                    <td class="py-4">Programming</td>
-                    <td class="py-4 font-bold">A</td>
-                    <td class="py-4 text-green-600">Passed</td>
-                  </tr>
-
-                  <tr class="border-b">
-                    <td class="py-4">Database Systems</td>
-                    <td class="py-4 font-bold">A-</td>
-                    <td class="py-4 text-green-600">Passed</td>
-                  </tr>
-
-                  <tr class="border-b">
-                    <td class="py-4">Networking</td>
-                    <td class="py-4 font-bold">B+</td>
-                    <td class="py-4 text-green-600">Passed</td>
-                  </tr>
+                <tbody id="grades-table">
 
                 </tbody>
 
@@ -398,156 +508,54 @@
         </section>
 
         <!-- ASSIGNMENTS -->
-        <section id="assignments" class="section hidden">
+        <section id="assignments" class="section hidden animate-fade-in">
 
-          <div class="bg-white rounded-3xl p-8 shadow-sm">
+          <div class="bg-white rounded-3xl p-8 shadow-sm card-3d hover-lift">
 
             <div class="flex items-center justify-between mb-8">
               <h1 class="text-3xl font-bold">
                 Assignments
               </h1>
 
-              <button class="bg-blue-600 text-white px-5 py-3 rounded-xl">
+              <button class="bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700 hover-lift">
                 Upload Submission
               </button>
             </div>
 
-            <div class="space-y-5">
-
-              <div class="border rounded-2xl p-5">
-                <div class="flex justify-between items-center">
-                  <div>
-                    <h2 class="font-bold text-lg">
-                      Final Web Project
-                    </h2>
-
-                    <p class="text-slate-500">
-                      Submit HTML + Tailwind project
-                    </p>
-                  </div>
-
-                  <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-xl">
-                    Pending
-                  </span>
-                </div>
-              </div>
-
-              <div class="border rounded-2xl p-5">
-                <div class="flex justify-between items-center">
-                  <div>
-                    <h2 class="font-bold text-lg">
-                      SQL Assignment
-                    </h2>
-
-                    <p class="text-slate-500">
-                      ERD + Queries
-                    </p>
-                  </div>
-
-                  <span class="bg-green-100 text-green-700 px-4 py-2 rounded-xl">
-                    Submitted
-                  </span>
-                </div>
-              </div>
-
-            </div>
+            <div class="space-y-5" id="all-assignments"></div>
 
           </div>
 
         </section>
 
         <!-- SCHEDULE -->
-        <section id="schedule" class="section hidden">
+        <section id="schedule" class="section hidden animate-fade-in">
 
-          <div class="bg-white rounded-3xl p-8 shadow-sm">
+          <div class="bg-white rounded-3xl p-8 shadow-sm card-3d hover-lift">
 
             <h1 class="text-3xl font-bold mb-8">
               Weekly Schedule
             </h1>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-
-              <div class="border rounded-2xl p-5">
-                <h2 class="font-bold text-blue-600">
-                  Monday
-                </h2>
-
-                <p class="mt-4">
-                  Web Development
-                </p>
-
-                <p class="text-slate-500 text-sm">
-                  08:00 AM - 10:00 AM
-                </p>
-              </div>
-
-              <div class="border rounded-2xl p-5">
-                <h2 class="font-bold text-green-600">
-                  Tuesday
-                </h2>
-
-                <p class="mt-4">
-                  Database Systems
-                </p>
-
-                <p class="text-slate-500 text-sm">
-                  09:00 AM - 11:00 AM
-                </p>
-              </div>
-
-              <div class="border rounded-2xl p-5">
-                <h2 class="font-bold text-orange-600">
-                  Wednesday
-                </h2>
-
-                <p class="mt-4">
-                  UI/UX Design
-                </p>
-
-                <p class="text-slate-500 text-sm">
-                  01:00 PM - 03:00 PM
-                </p>
-              </div>
-
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 perspective" id="weekly-schedule"></div>
 
           </div>
 
         </section>
 
         <!-- ANNOUNCEMENTS -->
-        <section id="announcements" class="section hidden">
+        <section id="announcements" class="section hidden animate-fade-in">
 
-          <div class="space-y-6">
-
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
-              <h2 class="font-bold text-xl">
-                Midterm Exams
-              </h2>
-
-              <p class="text-slate-500 mt-3">
-                Midterm exams will begin next week. Please check your course schedule.
-              </p>
-            </div>
-
-            <div class="bg-white rounded-3xl p-6 shadow-sm">
-              <h2 class="font-bold text-xl">
-                Library Access
-              </h2>
-
-              <p class="text-slate-500 mt-3">
-                The university library will remain open until 10 PM during exams.
-              </p>
-            </div>
+          <div class="space-y-6" id="announcements-list">
 
           </div>
 
         </section>
 
         <!-- PROFILE -->
-        <section id="profile" class="section hidden">
+        <section id="profile" class="section hidden animate-fade-in">
 
-          <div class="bg-white rounded-3xl p-8 shadow-sm max-w-3xl">
+          <div class="bg-white rounded-3xl p-8 shadow-sm max-w-3xl card-3d hover-lift">
 
             <h1 class="text-3xl font-bold mb-8">
               My Profile
@@ -562,7 +570,7 @@
 
                 <input
                   type="text"
-                  value="Ahmed Hassan"
+                  id="fullName"
                   class="w-full border rounded-xl px-4 py-3"
                 />
               </div>
@@ -574,7 +582,7 @@
 
                 <input
                   type="text"
-                  value="STU-2026-001"
+                  id="studentId"
                   class="w-full border rounded-xl px-4 py-3"
                 />
               </div>
@@ -586,7 +594,7 @@
 
                 <input
                   type="email"
-                  value="student@example.com"
+                  id="email"
                   class="w-full border rounded-xl px-4 py-3"
                 />
               </div>
@@ -598,14 +606,14 @@
 
                 <input
                   type="text"
-                  value="+252 63 0000000"
+                  id="phone"
                   class="w-full border rounded-xl px-4 py-3"
                 />
               </div>
 
             </div>
 
-            <button class="mt-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl">
+            <button class="mt-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl hover-lift">
               Save Changes
             </button>
 
@@ -622,25 +630,210 @@
   <!-- JAVASCRIPT -->
   <script>
 
+    // ===== DATA GENERATOR =====
+    const studentData = {
+      name: 'Ahmed Hassan',
+      major: 'Computer Science',
+      gpa: 3.87,
+      coursesCount: 6,
+      assignmentsDue: 4,
+      notifications: 12,
+      studentId: 'STU-2026-001',
+      email: 'ahmed.hassan@university.edu',
+      phone: '+252 63 123 4567'
+    };
+
+    const coursesData = [
+      { code: 'CS101', name: 'Programming', desc: 'Introduction to programming fundamentals.' },
+      { code: 'DB202', name: 'Database Systems', desc: 'SQL, PostgreSQL and database design.' },
+      { code: 'UX305', name: 'UI/UX Design', desc: 'Modern design systems and user research.' },
+      { code: 'SE401', name: 'Software Engineering', desc: 'Design patterns and best practices.' },
+      { code: 'NET301', name: 'Networking', desc: 'TCP/IP, routing and protocols.' },
+      { code: 'AI200', name: 'AI Basics', desc: 'Machine learning fundamentals.' }
+    ];
+
+    const assignmentsData = [
+      { title: 'Database Project', due: 'May 30, 2026', status: 'Urgent', color: 'red' },
+      { title: 'UI/UX Research', due: 'June 02, 2026', status: 'Pending', color: 'orange' },
+      { title: 'Networking Lab', due: 'June 05, 2026', status: 'Submitted', color: 'green' },
+      { title: 'AI Model Training', due: 'June 08, 2026', status: 'Pending', color: 'orange' },
+      { title: 'Web API Design', due: 'June 10, 2026', status: 'Urgent', color: 'red' }
+    ];
+
+    const gradesData = [
+      { course: 'Programming', grade: 'A', status: 'Passed' },
+      { course: 'Database Systems', grade: 'A-', status: 'Passed' },
+      { course: 'Networking', grade: 'B+', status: 'Passed' },
+      { course: 'Web Development', grade: 'A', status: 'Passed' },
+      { course: 'UI/UX Design', grade: 'B+', status: 'Passed' }
+    ];
+
+    const scheduleData = [
+      { course: 'Web Development', time: '08:00 AM - 10:00 AM', color: 'blue' },
+      { course: 'Data Structures', time: '11:00 AM - 01:00 PM', color: 'green' },
+      { course: 'Software Engineering', time: '02:00 PM - 04:00 PM', color: 'orange' }
+    ];
+
+    const weeklyScheduleData = [
+      { day: 'Monday', course: 'Web Development', time: '08:00 AM - 10:00 AM', color: 'blue' },
+      { day: 'Tuesday', course: 'Database Systems', time: '09:00 AM - 11:00 AM', color: 'green' },
+      { day: 'Wednesday', course: 'UI/UX Design', time: '01:00 PM - 03:00 PM', color: 'orange' },
+      { day: 'Thursday', course: 'Networking', time: '10:00 AM - 12:00 PM', color: 'purple' },
+      { day: 'Friday', course: 'AI/ML Lab', time: '03:00 PM - 05:00 PM', color: 'pink' },
+      { day: 'Saturday', course: 'Open Lab', time: '09:00 AM - 12:00 PM', color: 'indigo' }
+    ];
+
+    const announcementsData = [
+      { title: 'Midterm Exams', desc: 'Midterm exams will begin next week. Please check your course schedule.' },
+      { title: 'Library Access', desc: 'The university library will remain open until 10 PM during exams.' },
+      { title: 'Campus Event', desc: 'Annual tech conference coming this month. Register now!' },
+      { title: 'Scholarship Deadline', desc: 'Application deadline for fall scholarships is June 30th.' }
+    ];
+
+    // ===== INITIALIZE PAGE =====
+    function initializePage() {
+      populateDashboard();
+      populateCourses();
+      populateGrades();
+      populateAssignments();
+      populateSchedule();
+      populateAnnouncements();
+      populateProfile();
+    }
+
+    // ===== POPULATE FUNCTIONS =====
+    function populateDashboard() {
+      document.getElementById('userName').textContent = studentData.name;
+      document.getElementById('userMajor').textContent = studentData.major;
+      document.getElementById('gpa').textContent = studentData.gpa;
+      document.getElementById('courses-count').textContent = studentData.coursesCount;
+      document.getElementById('assignments-due').textContent = studentData.assignmentsDue;
+      document.getElementById('notifications').textContent = studentData.notifications;
+      document.getElementById('notifCount').textContent = studentData.notifications;
+
+      const assignmentsList = document.getElementById('assignments-list');
+      assignmentsList.innerHTML = assignmentsData.map((assignment, index) => `
+        <div class="border rounded-2xl p-4 flex justify-between items-center card-3d hover-lift animate-slide-up" style="animation-delay: ${index * 0.1}s;">
+          <div>
+            <h3 class="font-semibold">${assignment.title}</h3>
+            <p class="text-sm text-slate-500">Due: ${assignment.due}</p>
+          </div>
+          <span class="bg-${assignment.color}-100 text-${assignment.color}-600 px-4 py-2 rounded-xl text-sm">
+            ${assignment.status}
+          </span>
+        </div>
+      `).join('');
+
+      const scheduleList = document.getElementById('schedule-list');
+      scheduleList.innerHTML = scheduleData.map((item, index) => `
+        <div class="border-l-4 border-${item.color}-500 pl-4 animate-slide-left card-3d" style="animation-delay: ${index * 0.1}s;">
+          <h3 class="font-semibold">${item.course}</h3>
+          <p class="text-sm text-slate-500">${item.time}</p>
+        </div>
+      `).join('');
+    }
+
+    function populateCourses() {
+      const grid = document.getElementById('courses-grid');
+      grid.innerHTML = coursesData.map((course, index) => `
+        <div class="bg-white p-6 rounded-3xl shadow-sm card-3d hover-lift animate-slide-up" style="animation-delay: ${index * 0.1}s;">
+          <h2 class="font-bold text-xl">${course.code} - ${course.name}</h2>
+          <p class="text-slate-500 mt-2">${course.desc}</p>
+          <button class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700 hover-lift">
+            Open Course
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function populateGrades() {
+      const tbody = document.getElementById('grades-table');
+      tbody.innerHTML = gradesData.map(grade => `
+        <tr class="border-b animate-slide-up">
+          <td class="py-4">${grade.course}</td>
+          <td class="py-4 font-bold">${grade.grade}</td>
+          <td class="py-4 text-green-600">${grade.status}</td>
+        </tr>
+      `).join('');
+    }
+
+    function populateAssignments() {
+      const container = document.getElementById('all-assignments');
+      container.innerHTML = assignmentsData.map((assignment, index) => `
+        <div class="border rounded-2xl p-5 card-3d hover-lift animate-slide-up" style="animation-delay: ${index * 0.1}s;">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="font-bold text-lg">${assignment.title}</h2>
+              <p class="text-slate-500">Due: ${assignment.due}</p>
+            </div>
+            <span class="bg-${assignment.color}-100 text-${assignment.color}-700 px-4 py-2 rounded-xl">
+              ${assignment.status}
+            </span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function populateSchedule() {
+      const container = document.getElementById('weekly-schedule');
+      container.innerHTML = weeklyScheduleData.map((item, index) => `
+        <div class="border rounded-2xl p-5 card-3d hover-lift animate-slide-up" style="animation-delay: ${index * 0.1}s;">
+          <h2 class="font-bold text-${item.color}-600">${item.day}</h2>
+          <p class="mt-4">${item.course}</p>
+          <p class="text-slate-500 text-sm">${item.time}</p>
+        </div>
+      `).join('');
+    }
+
+    function populateAnnouncements() {
+      const container = document.getElementById('announcements-list');
+      container.innerHTML = announcementsData.map((announcement, index) => `
+        <div class="bg-white rounded-3xl p-6 shadow-sm card-3d hover-lift animate-slide-up" style="animation-delay: ${index * 0.1}s;">
+          <h2 class="font-bold text-xl">${announcement.title}</h2>
+          <p class="text-slate-500 mt-3">${announcement.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    function populateProfile() {
+      document.getElementById('fullName').value = studentData.name;
+      document.getElementById('studentId').value = studentData.studentId;
+      document.getElementById('email').value = studentData.email;
+      document.getElementById('phone').value = studentData.phone;
+    }
+
+    // ===== DARK MODE =====
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+
+    // Load dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+
+    // ===== NAVIGATION =====
     const sections = document.querySelectorAll('.section');
     const buttons = document.querySelectorAll('.menu-btn');
 
-    function showSection(id){
-
-      sections.forEach(section=>{
+    function showSection(id) {
+      sections.forEach(section => {
         section.classList.add('hidden');
       });
 
       document.getElementById(id).classList.remove('hidden');
 
-      buttons.forEach(btn=>{
+      buttons.forEach(btn => {
         btn.classList.remove('bg-blue-600');
         btn.classList.add('hover:bg-slate-800');
       });
 
       event.target.classList.add('bg-blue-600');
-
     }
+
+    // ===== INITIALIZE ON LOAD =====
+    window.addEventListener('DOMContentLoaded', initializePage);
 
   </script>
 
