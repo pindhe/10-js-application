@@ -13,7 +13,7 @@
 <br/>
 <br/>
 
-### 🎓 Practical JavaScript Projects for SIZ Students
+###  Practical JavaScript Projects for SIZ Students
 
 Collection of **10 modern JavaScript applications** developed to help students improve their **frontend development skills** through real-world projects.
 
